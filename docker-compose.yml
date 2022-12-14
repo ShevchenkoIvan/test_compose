@@ -1,0 +1,16 @@
+---
+version: "3.9"
+
+services:
+  test-portal:
+    image: ivsh11/test-django-portal:2
+    ports:
+      - "8005:8000"
+    deploy:
+      replicas: 3
+      placement:
+        max_replicas_per_node: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
